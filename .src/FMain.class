@@ -130,7 +130,7 @@ End
 
 Public Sub Form_Open()
   ComboBox1.Add("C", 1)
-  ComboBox1.Add("C+", 0)
+  ComboBox1.Add("C++", 0)
   ComboBox1.Add("HTML", 2)
   ComboBox1.Add("CSS", 3)
   ComboBox1.Add("Gambas", 4)
@@ -341,17 +341,21 @@ Public Sub ComboBox1_Change()
   Endif
   If ComboBox1.Text = "C"
   compiler = "gcc -o"
+  TextEditor1.Highlight = "C"
   Endif
   TextArea1.Text = compiler & " build" & " " & dosya
   If ComboBox1.Text = "Gambas"
   TextArea1.Text = ""
+  TextEditor1.Highlight = "Gambas"
   Endif
   If ComboBox1.Text = "CSS"
   TextArea1.Text = ""
+  TextEditor1.Highlight = "CSS"
   Endif
   
   If ComboBox1.Text = "HTML"
   TextArea1.Text = "firefox " & dosya
+  TextEditor1.Highlight = "HTML"
   Endif
 End
 

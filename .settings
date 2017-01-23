@@ -8,9 +8,9 @@ Count=0
 Path="cide.gambas"
 
 [OpenFile]
-File[1]=".src/FMain.form"
+File[1]=".src/FMain.class:0.369"
 Active=2
-File[2]=".src/FMain.class:35.33"
+File[2]=".src/FMain.form"
 Count=2
 
 [Watches]
