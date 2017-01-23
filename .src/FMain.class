@@ -1,7 +1,7 @@
 ' Gambas class file
 
 dosya As String
-compiler As String
+compiler As String = "g++ -o"
 
 Public Sub save_Click()
   Panel1.Visible = True
@@ -75,7 +75,36 @@ Public Sub Form_Resize()
   Resizebox.Width = FMain.Width
   Resizebox.Height = FMain.Height
   
-
+  If Button4.X < 0
+  Button4.X = 0
+  Panel3.x = 0
+  Endif
+  
+  If Button4.Y < 32
+  Button4.Y = 32
+  Panel3.y = 32
+  Endif
+  
+  If Panel3.X > FMain.Width - Panel3.Width
+  Panel3.X = FMain.Width - Panel3.Width
+  Button4.X = Panel3.X
+  Endif
+  If Button4.Y > FMain.Height - Panel3.Height
+  Panel3.Y = FMain.Height - Panel3.Height
+  Button4.y = Panel3.y
+  Endif
+  ComboBox1_Change()
+  
+  Panel4.X = ((FMain.Width - Panel4.Width) / 2) 
+  Panel4.Y = ((FMain.Height - Panel4.Height) / 2) 
+  If FMain.Width < Panel4.Width + (Panel3.Width * 2) + 80
+  FMain.Width = Panel4.Width + 80 + (Panel3.Width * 2)
+  Endif
+  If FMain.Height < Panel4.Height + 80
+  FMain.Height = Panel4.Height + 80
+  Endif
+  
+  
 End
 
 
@@ -100,7 +129,11 @@ End
 
 
 Public Sub Form_Open()
-  
+  ComboBox1.Add("C", 1)
+  ComboBox1.Add("C+", 0)
+  ComboBox1.Add("HTML", 2)
+  ComboBox1.Add("CSS", 3)
+  ComboBox1.Add("Gambas", 4)
   Form_Resize()
   TextEditor1.Highlight = "CPlusPlus"
   If Args.Max == 0
@@ -150,36 +183,15 @@ Public Sub Button4_MouseMove()
   Button4.Y = Mouse.ScreenY - FMain.Y
   Panel3.X = Button4.x
   Panel3.Y = Button4.Y
-  If Button4.X < 0
-  Button4.X = 0
-  Panel3.x = 0
-  Endif
-  
-  If Button4.Y < 32
-  Button4.Y = 32
-  Panel3.y = 32
-  Endif
-  
-  If Panel3.X > FMain.Width - Panel3.Width
-  Panel3.X = FMain.Width - Panel3.Width
-  Button4.X = Panel3.X
-  Endif
-  If Button4.Y > FMain.Height - Panel3.Height
-  Panel3.Y = FMain.Height - Panel3.Height
-  Button4.y = Panel3.y
-  Endif
   Form_Resize()
-  
 End
 
 Public Sub Button3_DblClick()
   If dosya == ""
   Message.Info("No Loaded file", "Ok")
   Else
-  TextBox3.Text = "xterm -e \"" & compiler & " build " & dosya & "\""
+  TextBox3.Text = "xterm -e \"" & TextArea1.Text & "\""
   Shell TextBox3.Text
-  Shell "xterm -e \"./build\""
-  Form_Resize()
   Endif
 End
 
@@ -243,7 +255,7 @@ Public Sub SwitchButton1_Click()
   TextEditor1.Highlight = ""
   TextEditor1.SelectAll
   Endif
-
+ 
   Form_Resize()
 End
 
@@ -313,5 +325,53 @@ Public Sub Resizebox_MouseMove()
 
   FMain.Width = Mouse.ScreenX - FMain.X
   FMain.Height = Mouse.ScreenY - FMain.Y
+
+End
+
+Public Sub ComboBox1_Change()
+  If ComboBox1.Text = "Gambas"
+  Button9.Text = "Gmbs"
+  Else
+  Button9.Text = ComboBox1.Text
+  Endif
+  
+  If ComboBox1.Text = "C++"
+  compiler = "g++ -o"
+  TextEditor1.Highlight = "CPlusPlus"
+  Endif
+  If ComboBox1.Text = "C"
+  compiler = "gcc -o"
+  Endif
+  TextArea1.Text = compiler & " build" & " " & dosya
+  If ComboBox1.Text = "Gambas"
+  TextArea1.Text = ""
+  Endif
+  If ComboBox1.Text = "CSS"
+  TextArea1.Text = ""
+  Endif
+  
+  If ComboBox1.Text = "HTML"
+  TextArea1.Text = "firefox " & dosya
+  Endif
+End
+
+Public Sub Button11_Click()
+  If Panel4.Visible
+  Panel4.Visible = False
+  Else
+  Panel4.Visible = True
+  Endif
+
+End
+
+Public Sub TextLabel1_DblClick()
+
+  move_Click()
+
+End
+
+Public Sub Button12_Click()
+
+  Shell "xdg-open https://telegram.me/parduscix"
 
 End
