@@ -1,0 +1,177 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,118,64)
+  Text = ("CIDE")
+  Border = False
+  { a Menu
+    Text = ("x")
+    Visible = False
+    { esc Menu
+      Text = ("esc")
+      Picture = Picture["icon:/32/cancel"]
+      Shortcut = "Esc"
+    }
+    { Full Menu
+      Text = ("FullScreen")
+      Picture = Picture["icon:/32/fullscreen"]
+      Shortcut = "Ctrl+F"
+    }
+    { open Menu
+      Text = ("Open")
+      Picture = Picture["icon:/32/open"]
+      Shortcut = "Ctrl+Shift+O"
+    }
+    { Qopen Menu
+      Text = ("QuickOpen")
+      Shortcut = "Ctrl+O"
+    }
+    { qsave Menu
+      Text = ("QuickSave")
+      Shortcut = "Ctrl+S"
+    }
+    { save Menu
+      Action = "save"
+      Text = ("Save")
+      Picture = Picture["icon:/32/save"]
+      Shortcut = "Ctrl+Shift+S"
+    }
+  }
+  { Resizebox PictureBox
+    MoveScaled(79,14,7.1429,7.1429)
+    Background = &H003F7F&
+  }
+  { TabStrip1 Frame
+    MoveScaled(1,6,24,24)
+    { !TextEditor1 TextEditor
+      MoveScaled(0,0,45,36)
+      #Public = True
+      Tracking = True
+      Mouse = Mouse.Arrow
+      Drop = True
+      Expand = True
+      Border = False
+      TabSize = 4
+      Wrap = True
+      ShowPosition = True
+      ShowLimit = True
+      ShowCurrent = True
+      ShowLineNumber = True
+      ShowModified = True
+      ShowBraces = True
+      ShowIcon = True
+      ShowExpand = True
+      ShowSpaces = True
+      ShowIndent = True
+    }
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(0,0,118,5)
+    Background = &H003F7F&
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(43,0,24,4.5714)
+    Font = Font["Bold,+2"]
+    Text = ("CIDE")
+    Alignment = Align.Center
+  }
+  { Panel1 Panel
+    MoveScaled(11,50,71,7)
+    Visible = False
+    Arrangement = Arrange.Horizontal
+    { DirBox1 DirBox
+      MoveScaled(0,0,24,4)
+    }
+    { TextBox1 TextBox
+      MoveScaled(32,0,24,4)
+      Tag = "Save path"
+    }
+    { Button1 Button
+      MoveScaled(60,1,6,4)
+      Text = ("Save")
+    }
+  }
+  { Panel2 Panel
+    MoveScaled(9,42,73,7)
+    Visible = False
+    Arrangement = Arrange.Horizontal
+    { DirBox2 DirBox
+      MoveScaled(2,2,24,4)
+    }
+    { TextBox2 TextBox
+      MoveScaled(34,2,24,4)
+      Tag = "Save path"
+    }
+    { Button2 Button
+      MoveScaled(62,2,6,4)
+      Text = ("Open")
+    }
+  }
+  { Panel3 Panel
+    MoveScaled(98,7,15,15)
+    Background = &HE0000000&
+    { Button3 Button
+      MoveScaled(0,0,5,5)
+      Picture = Picture["icon:/32/play"]
+    }
+    { Button5 Button
+      MoveScaled(5,0,5,5)
+      Picture = Picture["icon:/32/open"]
+    }
+    { Button6 Button
+      MoveScaled(0,5,5,5)
+      Picture = Picture["icon:/32/save"]
+    }
+    { Button7 Button
+      MoveScaled(5,5,5,5)
+      Picture = Picture["icon:/32/floppy"]
+    }
+    { Button8 Button
+      MoveScaled(10,0,5,5)
+      Picture = Picture["icon:/32/erase"]
+    }
+    { SwitchButton1 SwitchButton
+      MoveScaled(0,10,10,5)
+      Value = True
+    }
+    { Button9 ToggleButton
+      MoveScaled(10,5,5,5)
+      Text = ("C++")
+      Value = True
+    }
+    { Button10 Button
+      MoveScaled(10,10,5,5)
+      Picture = Picture["icon:/32/new"]
+    }
+  }
+  { Button4 Button
+    MoveScaled(98,7,2,2)
+    Background = Color.Black
+  }
+  { TextBox3 TextBox
+    MoveScaled(51,26,24,4)
+    Visible = False
+  }
+  { move Button
+    MoveScaled(4.8571,0.2857,4.2857,4.2857)
+    Background = Color.Green
+  }
+  { move2 Button
+    MoveScaled(9.4286,0.2857,4.2857,4.2857)
+    Background = &H0000FF&
+  }
+  { move3 Button
+    MoveScaled(0.2857,0.2857,4.2857,4.2857)
+    Background = Color.DarkRed
+  }
+}
+
+# Gambas Action File 3.0
+
+{ Actions
+  { Action save
+    Text = "Save"
+    Shortcut = "Ctrl+Shift+S"
+    Picture = "icon:/32/save"
+  }
+}

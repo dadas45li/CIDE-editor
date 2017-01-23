@@ -1,0 +1,10 @@
+# Gambas Action File 3.0
+
+{ Actions
+  { Action save
+    Text = "Save"
+    Shortcut = "Ctrl+Shift+S"
+    Picture = "icon:/32/save"
+  }
+}
+

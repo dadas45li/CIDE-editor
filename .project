@@ -1,0 +1,25 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.9.1
+Startup=FMain
+Version=0.0.8
+Component=gb.image
+Component=gb.gui.qt
+Component=gb.form
+Component=gb.eval
+Component=gb.eval.highlight
+Component=gb.form.editor
+TabSize=2
+Language=en_US
+Maintainer=a
+Address=a@pts4
+License=General Public License
+PackageName=cide-0.0.8
+PackageVersion=2
+CreateEachDirectory=1
+MimeTypes="cpp","c","h"
+Packager=1
+Systems=debian
+Menus=debian:"Applications/Programming"
+Categories=debian:"Development"
+Groups=debian:"editors"
+ExtraDependencies=debian:"gcc\t\t\n\t\t"

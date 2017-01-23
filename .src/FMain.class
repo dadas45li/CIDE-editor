@@ -1,0 +1,317 @@
+' Gambas class file
+
+dosya As String
+compiler As String
+
+Public Sub save_Click()
+  Panel1.Visible = True
+  Panel2.Visible = False
+  TextBox1.Text = TextBox2.Text
+  DirBox1.Value = DirBox1.Value
+  Form_Resize()
+End
+Public Sub open_Click()
+  
+  Panel2.Visible = True
+  Panel1.Visible = False
+  TextBox2.Text = TextBox1.Text
+  DirBox2.Value = DirBox1.Value
+  Form_Resize()
+  
+End
+
+
+
+Public Sub Form_Resize()
+  TextEditor1.X = 0
+  TextEditor1.y = 20
+  TabStrip1.X = 32
+  TabStrip1.Y = 16
+  TabStrip1.Width = FMain.Width
+  If Panel1.Visible Or Panel2.Visible
+  TabStrip1.Height = FMain.Height - Panel1.Height - 20
+  TabStrip1.X = 32
+  TabStrip1.Width = FMain.Width - 8
+  Else
+  TabStrip1.Height = FMain.Height - 20
+    TabStrip1.X = 4
+  TabStrip1.Width = FMain.Width - 8
+  Endif
+  Panel1.Width = FMain.Width - 8
+  Panel1.X = 4
+  Panel1.Y = FMain.Height - Panel1.Height - 4
+  TextEditor1.Height = TabStrip1.Height - 20
+  TextEditor1.Width = TabStrip1.Width 
+  Panel2.Width = FMain.Width - 8
+  Panel2.X = 4
+  Panel2.Y = FMain.Height - Panel2.Height - 4
+  
+  TextBox1.X = DirBox1.Width  
+  If (Len(DirBox1.Value) * 5 == 0)
+  DirBox1.Width = 50
+  Else
+  DirBox1.Width = Len(DirBox1.Value) * 8 + 50
+  Endif
+  TextBox1.Width = FMain.Width - 42 - DirBox1.Width
+  
+  TextBox2.X = DirBox2.Width  
+  If (Len(DirBox2.Value) * 5 == 0)
+  DirBox2.Width = 50
+  Else
+  DirBox2.Width = Len(DirBox2.Value) * 8 + 50
+  Endif
+  TextBox2.Width = FMain.Width - 42 - DirBox2.Width
+  
+  Panel1.Height = TextBox1.Height
+  Panel2.Height = TextBox2.Height
+  
+  FMain.Text = "CIDE - " & dosya
+  PictureBox1.Width = FMain.Width
+  TextLabel1.Text = FMain.Text
+  TextLabel1.X = 0
+  TextLabel1.Width = FMain.Width
+  Resizebox.X = 0
+  Resizebox.Y = 0
+  Resizebox.Width = FMain.Width
+  Resizebox.Height = FMain.Height
+  
+
+End
+
+
+Public Sub Button1_Click()
+  Shell("touch " & DirBox1.Value & "/" & TextBox1.Text)
+  Try File.Save(DirBox1.Value & "/" & TextBox1.Text, TextEditor1.Text)
+  Panel1.Visible = False
+  Panel2.Visible = False
+  Form_Resize()
+  
+End
+
+Public Sub Button2_Click()
+  
+  Shell("touch " & DirBox2.Value & "/" & TextBox2.Text)
+  Try TextEditor1.Text = File.Load(DirBox2.Value & "/" & TextBox2.Text)
+  dosya = DirBox2.Value & "/" & TextBox2.Text
+  Panel1.Visible = False
+  Panel2.Visible = False
+  Form_Resize()
+End
+
+
+Public Sub Form_Open()
+  
+  Form_Resize()
+  TextEditor1.Highlight = "CPlusPlus"
+  If Args.Max == 0
+  TextEditor1.Text = ""
+  Else
+  TextEditor1.Text = File.Load(Args.All[Args.Max])
+  dosya = Args.All[Args.Max]
+  Endif
+End
+
+
+
+
+Public Sub Full_Click()
+  If FMain.FullScreen
+  FMain.FullScreen = False  
+  Else
+  FMain.FullScreen = True
+  Endif
+  Form_Resize()  
+End
+
+Public Sub esc_Click()
+  
+  Panel1.Visible = False
+  Panel2.Visible = False
+  Form_Resize()
+  
+End
+
+
+Public Sub DirBox1_Change()
+
+  Form_Resize()
+
+End
+Public Sub DirBox2_Change()
+
+  Form_Resize()
+
+End
+
+
+Public Sub Button4_MouseMove()
+  
+  Button4.X = Mouse.ScreenX - FMain.X
+  Button4.Y = Mouse.ScreenY - FMain.Y
+  Panel3.X = Button4.x
+  Panel3.Y = Button4.Y
+  If Button4.X < 0
+  Button4.X = 0
+  Panel3.x = 0
+  Endif
+  
+  If Button4.Y < 32
+  Button4.Y = 32
+  Panel3.y = 32
+  Endif
+  
+  If Panel3.X > FMain.Width - Panel3.Width
+  Panel3.X = FMain.Width - Panel3.Width
+  Button4.X = Panel3.X
+  Endif
+  If Button4.Y > FMain.Height - Panel3.Height
+  Panel3.Y = FMain.Height - Panel3.Height
+  Button4.y = Panel3.y
+  Endif
+  Form_Resize()
+  
+End
+
+Public Sub Button3_DblClick()
+  If dosya == ""
+  Message.Info("No Loaded file", "Ok")
+  Else
+  TextBox3.Text = "xterm -e \"" & compiler & " build " & dosya & "\""
+  Shell TextBox3.Text
+  Shell "xterm -e \"./build\""
+  Form_Resize()
+  Endif
+End
+
+Public Sub qsave_Click()
+  If dosya == ""
+  Message.Info("No Loaded file", "Ok")
+  Else
+  File.Save(dosya, TextEditor1.Text)  
+  Endif
+  Form_Resize()
+End
+
+
+Public Sub Button5_Click()
+  Dialog.Filter = ["*.cpp", "C++ Source Code", "*.c;*.h", "C Source Code"]
+  Dialog.OpenFile()
+  If Dialog.Path == ""
+  Else
+  dosya = Dialog.Path
+  TextEditor1.Text = File.Load(dosya)
+  Endif
+  Form_Resize()
+End
+
+Public Sub Button6_Click()
+
+  qsave_Click()
+  Form_Resize()
+End
+Public Sub Qopen_Click()
+  
+  Button5_Click()
+  
+  Form_Resize()
+End
+
+
+Public Sub Button7_Click()
+
+  save_Click
+  Form_Resize()
+End
+
+Public Sub Button8_Click()
+
+  TextEditor1.Text = ""
+  dosya = 0
+  Form_Resize()
+End
+
+Public Sub SwitchButton1_Click()
+  If SwitchButton1.Value
+  If compiler == "g++ -o"
+  TextEditor1.Highlight = "C"
+  Endif
+  If compiler == "gcc -o"
+  TextEditor1.Highlight = "CPlusPlus"
+  Endif
+  TextEditor1.SelectAll
+  Else
+  TextEditor1.Highlight = ""
+  TextEditor1.SelectAll
+  Endif
+
+  Form_Resize()
+End
+
+Public Sub Button9_Click()
+
+  If Button9.Value
+  Button9.Text = "C++"
+  TextEditor1.Highlight = "CPlusPlus"
+  compiler = "g++ -o"
+  Else
+  Button9.Text = "C"
+  TextEditor1.Highlight = "C"
+  compiler = "gcc -o"
+  Endif
+Form_Resize()
+End
+
+Public Sub Button10_Click()
+
+  Dialog.SaveFile()
+  If Dialog.Path == ""
+  Message.Error("File not saved", "Ok")
+  Else
+  Shell "touch" & Dialog.Path
+  dosya = Dialog.Path
+  TextEditor1.Text = ""
+  Endif
+  Form_Resize()
+End
+
+Public Sub move_Click()
+If FMain.Maximized
+FMain.Maximized = False
+Else
+FMain.Maximized = True
+Endif
+
+End
+
+Public Sub move2_Click()
+
+  FMain.Minimized = True
+
+End
+
+Public Sub PictureBox1_MouseMove()
+
+
+  FMain.X = Mouse.ScreenX - (FMain.Width / 2)
+  FMain.Y = Mouse.ScreenY - 16
+
+End
+
+Public Sub move3_Click()
+
+  FMain.Close()
+
+End
+
+Public Sub TextLabel1_MouseMove()
+
+  PictureBox1_MouseMove()
+
+End
+
+Public Sub Resizebox_MouseMove()
+
+  FMain.Width = Mouse.ScreenX - FMain.X
+  FMain.Height = Mouse.ScreenY - FMain.Y
+
+End
