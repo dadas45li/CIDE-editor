@@ -1,20 +1,23 @@
 # Gambas Project File 3.0
 # Compiled with Gambas 3.9.1
 Startup=FMain
+Icon=logo.png
 Version=0.0.11
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
+Component=gb.dbus
 Component=gb.eval
 Component=gb.eval.highlight
 Component=gb.form.editor
+Component=gb.gui.trayicon
 TabSize=2
 Language=en_US
 Maintainer=a
 Address=a@pts4
 License=General Public License
 PackageName=cide-0.0.11
-PackageVersion=2
+PackageVersion=3
 CreateEachDirectory=1
 MimeTypes="cpp","c","h","css","html","htm"
 Packager=1

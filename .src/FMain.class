@@ -142,6 +142,7 @@ Public Sub Form_Open()
   TextEditor1.Text = File.Load(Args.All[Args.Max])
   dosya = Args.All[Args.Max]
   Endif
+  FMain.Icon = Picture.Load("logo.png")
 End
 
 
@@ -377,5 +378,32 @@ End
 Public Sub Button12_Click()
 
   Shell "xdg-open https://telegram.me/parduscix"
+
+End
+
+Public Sub show_Click()
+
+FMain.Visible = True
+
+End
+Public Sub hide_Click()
+  
+  FMain.Visible = False
+  
+End
+
+Public Sub close_Click()
+  
+  move3_Click()
+  
+End
+
+Public Sub TrayIcon1_Click()
+
+ If FMain.Visible
+ FMain.Visible = False
+ Else
+ FMain.Visible = True
+ Endif
 
 End

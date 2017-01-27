@@ -7,7 +7,9 @@ FMain
 gb.image
 gb.gui.qt
 gb.form
+gb.dbus
 gb.eval
 gb.eval.highlight
 gb.form.editor
+gb.gui.trayicon
 

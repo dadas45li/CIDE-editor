@@ -130,7 +130,7 @@ End
 
 Public Sub Form_Open()
   ComboBox1.Add("C", 1)
-  ComboBox1.Add("C+", 0)
+  ComboBox1.Add("C++", 0)
   ComboBox1.Add("HTML", 2)
   ComboBox1.Add("CSS", 3)
   ComboBox1.Add("Gambas", 4)
@@ -377,5 +377,32 @@ End
 Public Sub Button12_Click()
 
   Shell "xdg-open https://telegram.me/parduscix"
+
+End
+
+Public Sub show_Click()
+
+FMain.Visible = True
+
+End
+Public Sub hide_Click()
+  
+  FMain.Visible = False
+  
+End
+
+Public Sub close_Click()
+  
+  move3_Click()
+  
+End
+
+Public Sub TrayIcon1_Click()
+
+ If FMain.Visible
+ FMain.Visible = False
+ Else
+ FMain.Visible = True
+ Endif
 
 End

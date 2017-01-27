@@ -2,8 +2,29 @@
 
 { Form Form
   MoveScaled(0,0,118,64)
+  Expand = True
   Text = ("CIDE")
+  Mask = True
   Border = False
+  Opacity = 90
+  AutoResize = True
+  Margin = True
+  { y Menu
+    Text = ("y")
+    Visible = False
+    { show Menu
+      Text = ("Show")
+      Picture = Picture["icon:/32/up"]
+    }
+    { hide Menu
+      Text = ("Hide")
+      Picture = Picture["icon:/32/down"]
+    }
+    { close Menu
+      Text = ("Close")
+      Picture = Picture["icon:/32/close"]
+    }
+  }
   { a Menu
     Text = ("x")
     Visible = False
@@ -70,10 +91,12 @@
   { PictureBox1 PictureBox
     MoveScaled(0,0,118,5)
     Background = &H003F7F&
+    Alignment = Align.Center
   }
   { TextLabel1 TextLabel
     MoveScaled(43,0,24,4.5714)
     Font = Font["Bold,+2"]
+    Foreground = Color.Background
     Text = ("CIDE")
     Alignment = Align.Center
   }
@@ -152,6 +175,10 @@
     { ColorButton1 ColorButton
       MoveScaled(5,15,5,5)
     }
+    { Button12 Button
+      MoveScaled(10,15,5,5)
+      Picture = Picture["icon:/32/info"]
+    }
   }
   { Button4 Button
     MoveScaled(98,7,2,2)
@@ -200,8 +227,12 @@
       MoveScaled(-1,6,54,1)
     }
   }
-  { DocumentView1 DocumentView
-    MoveScaled(92,33,16,16)
+  { !TrayIcon1 #TrayIcon
+    #MoveScaled(93,32)
+    #Public = True
+    Visible = True
+    Picture = Picture["logo.png"]
+    PopupMenu = "y"
   }
 }
 
