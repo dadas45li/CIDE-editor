@@ -142,6 +142,7 @@ Public Sub Form_Open()
   TextEditor1.Text = File.Load(Args.All[Args.Max])
   dosya = Args.All[Args.Max]
   Endif
+  FMain.Icon = Picture.Load("logo.png")
 End
 
 
@@ -311,8 +312,8 @@ End
 
 Public Sub move3_Click()
 
+  TrayIcon1.Delete()
   FMain.Close()
-
 End
 
 Public Sub TextLabel1_MouseMove()

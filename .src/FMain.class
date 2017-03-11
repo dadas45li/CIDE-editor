@@ -30,7 +30,7 @@ Public Sub Form_Resize()
   TabStrip1.Width = FMain.Width
   If Panel1.Visible Or Panel2.Visible
   TabStrip1.Height = FMain.Height - Panel1.Height - 20
-  TabStrip1.X = 32
+  TabStrip1.X = 4
   TabStrip1.Width = FMain.Width - 8
   Else
   TabStrip1.Height = FMain.Height - 20
@@ -312,8 +312,8 @@ End
 
 Public Sub move3_Click()
 
+  TrayIcon1.Delete()
   FMain.Close()
-
 End
 
 Public Sub TextLabel1_MouseMove()
