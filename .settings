@@ -8,7 +8,7 @@ Count=0
 Path="cide.gambas"
 
 [OpenFile]
-File[1]=".src/FMain.class:35.33"
+File[1]=".src/FMain.class:28.135"
 Active=1
 File[2]=".src/FMain.form"
 Count=2

@@ -9,44 +9,81 @@
   Opacity = 90
   AutoResize = True
   Margin = True
-  { y Menu
-    Text = ("y")
+  { menux Menu
+    Text = ("menux")
     Visible = False
-    { open Menu
-      Text = ("Open")
-      Picture = Picture["icon:/32/open"]
-      Shortcut = "Ctrl+Shift+O"
+    { copy Menu
+      Text = ("Copy")
+      Picture = Picture["icon:/32/copy"]
+      Shortcut = "Ctrl+C"
     }
-    { Qopen Menu
-      Text = ("QuickOpen")
-      Shortcut = "Ctrl+O"
+    { paste Menu
+      Text = ("Paste")
+      Picture = Picture["icon:/32/paste"]
+      Shortcut = "Ctrl+V"
     }
-    { save Menu
-      Action = "save"
-      Text = ("Save")
-      Picture = Picture["icon:/32/save"]
-      Shortcut = "Ctrl+Shift+S"
+    { cut Menu
+      Text = ("Cut")
+      Picture = Picture["icon:/32/cut"]
+      Shortcut = "Ctrl+X"
     }
-    { qsave Menu
-      Text = ("QuickSave")
-      Shortcut = "Ctrl+S"
+    { undo Menu
+      Text = ("Undo")
+      Picture = Picture["icon:/32/undo"]
+      Shortcut = "Ctrl+Z"
     }
-    { show Menu
-      Text = ("Show")
-      Picture = Picture["icon:/32/up"]
+    { redo Menu
+      Text = ("Redo")
+      Picture = Picture["icon:/32/redo"]
+      Shortcut = "Ctrl+Y"
     }
-    { hide Menu
-      Text = ("Hide")
-      Picture = Picture["icon:/32/down"]
+    { sall Menu
+      Text = ("Select All")
+      Picture = Picture["icon:/32/select-all"]
+      Shortcut = "Ctrl+A"
     }
-    { close Menu
-      Text = ("Close")
-      Picture = Picture["icon:/32/close"]
-    }
-    { Full Menu
-      Text = ("FullScreen")
-      Picture = Picture["icon:/32/fullscreen"]
-      Shortcut = "Ctrl+F"
+    { y Menu
+      Text = ("CIDE")
+      Picture = Picture["logo.png"]
+      { open Menu
+        Text = ("Open")
+        Picture = Picture["icon:/32/open"]
+        Shortcut = "Ctrl+Shift+O"
+      }
+      { Qopen Menu
+        Text = ("QuickOpen")
+        Shortcut = "Ctrl+O"
+      }
+      { save Menu
+        Action = "save"
+        Text = ("Save")
+        Picture = Picture["icon:/32/save"]
+        Shortcut = "Ctrl+Shift+S"
+      }
+      { qsave Menu
+        Text = ("QuickSave")
+        Shortcut = "Ctrl+S"
+      }
+      { show Menu
+        Text = ("Show")
+        Picture = Picture["icon:/32/up"]
+        Shortcut = "Alt+S"
+      }
+      { hide Menu
+        Text = ("Hide")
+        Picture = Picture["icon:/32/down"]
+        Shortcut = "Alt+H"
+      }
+      { close Menu
+        Text = ("Close")
+        Picture = Picture["icon:/32/close"]
+        Shortcut = "Ctrl+Q"
+      }
+      { Full Menu
+        Text = ("FullScreen")
+        Picture = Picture["icon:/32/fullscreen"]
+        Shortcut = "Ctrl+F"
+      }
     }
   }
   { Menu1 Menu
@@ -159,11 +196,6 @@
       MoveScaled(0,10,10,5)
       Value = True
     }
-    { Button9 ToggleButton
-      MoveScaled(10,5,5,5)
-      Text = ("C++")
-      Value = True
-    }
     { Button10 Button
       MoveScaled(10,10,5,5)
       Picture = Picture["icon:/32/new"]
@@ -178,6 +210,10 @@
     { Button12 Button
       MoveScaled(10,15,5,5)
       Picture = Picture["icon:/32/info"]
+    }
+    { Button9 Button
+      MoveScaled(10,5,5,5)
+      Text = ("C++")
     }
   }
   { Button4 Button

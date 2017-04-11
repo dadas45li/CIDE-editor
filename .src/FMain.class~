@@ -30,7 +30,7 @@ Public Sub Form_Resize()
   TabStrip1.Width = FMain.Width
   If Panel1.Visible Or Panel2.Visible
   TabStrip1.Height = FMain.Height - Panel1.Height - 20
-  TabStrip1.X = 32
+  TabStrip1.X = 4
   TabStrip1.Width = FMain.Width - 8
   Else
   TabStrip1.Height = FMain.Height - 20
@@ -143,6 +143,7 @@ Public Sub Form_Open()
   dosya = Args.All[Args.Max]
   Endif
   FMain.Icon = Picture.Load("logo.png")
+  TextEditor1.PopupMenu = "menux"
 End
 
 
@@ -207,7 +208,7 @@ End
 
 
 Public Sub Button5_Click()
-  Dialog.Filter = ["*.cpp", "C++ Source Code", "*.c;*.h", "C Source Code"]
+  Dialog.Filter = ["*.cpp", "C++ Source Code", "*.java", "Java/Android Source Code", "*.c;*.h", "C Source Code", "*.html", "Web Page Code", "*.htm", "Web Page Code", "*.java", "Java Source Code", "*.css", "CSS Code", "*.php", "PHP Code", "*.conf", "Config file", "*.ino", "Arduino Source Code"]
   Dialog.OpenFile()
   If Dialog.Path == ""
   Else
@@ -260,19 +261,6 @@ Public Sub SwitchButton1_Click()
   Form_Resize()
 End
 
-Public Sub Button9_Click()
-
-  If Button9.Value
-  Button9.Text = "C++"
-  TextEditor1.Highlight = "CPlusPlus"
-  compiler = "g++ -o"
-  Else
-  Button9.Text = "C"
-  TextEditor1.Highlight = "C"
-  compiler = "gcc -o"
-  Endif
-Form_Resize()
-End
 
 Public Sub Button10_Click()
 
@@ -312,7 +300,7 @@ End
 
 Public Sub move3_Click()
 
-  TrayIcon1.Delete()
+  TrayIcon1.Hide()
   FMain.Close()
 End
 
@@ -357,7 +345,7 @@ Public Sub ComboBox1_Change()
   If ComboBox1.Text = "HTML"
   TextArea1.Text = "firefox " & dosya
   TextEditor1.Highlight = "HTML"
-  Endif
+  Endif 
 End
 
 Public Sub Button11_Click()
@@ -407,3 +395,41 @@ Public Sub TrayIcon1_Click()
  Endif
 
 End
+Public Sub copy_Click()
+  
+  TextEditor1.Copy()
+  
+End
+Public Sub paste_Click()
+  
+  TextEditor1.Paste()
+  
+End
+Public Sub cut_Click()
+  
+  TextEditor1.Cut()
+  
+End
+
+Public Sub undo_Click()
+  
+  TextEditor1.Undo()
+  
+End
+
+
+Public Sub redo_Click()
+  
+  TextEditor1.Redo()
+  
+End
+
+Public Sub sall_Click()
+  
+  TextEditor1.SelectAll()
+  
+End
+
+
+
+
