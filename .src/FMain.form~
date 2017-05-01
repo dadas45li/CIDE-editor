@@ -263,7 +263,7 @@
     #Public = True
     Visible = True
     Picture = Picture["logo.png"]
-    PopupMenu = "y"
+    PopupMenu = "menux"
   }
   { Panel5 Panel
     MoveScaled(104,0,14,5)

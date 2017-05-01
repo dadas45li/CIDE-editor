@@ -80,7 +80,7 @@
         Shortcut = "Ctrl+Q"
       }
       { bolder Menu
-        Text = ("Enable/Disable Bolder")
+        Text = ("Enable/Disable Border")
         Picture = Picture["icon:/32/desktop"]
         Shortcut = "Ctrl+Shift+Alt+B"
       }

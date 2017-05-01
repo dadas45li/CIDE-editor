@@ -2,7 +2,7 @@
 # Compiled with Gambas 3.9.1
 Startup=FMain
 Icon=logo.png
-Version=0.0.15
+Version=0.0.16
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
@@ -16,7 +16,7 @@ Language=en_US
 Maintainer=a
 Address=a@pts4
 License=General Public License
-PackageName=cide-0.0.12
+PackageName=cide-0.0.15
 PackageVersion=4
 CreateEachDirectory=1
 Packager=1
