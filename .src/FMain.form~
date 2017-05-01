@@ -6,7 +6,7 @@
   Text = ("CIDE")
   Mask = True
   Border = False
-  Opacity = 90
+  Opacity = 95
   AutoResize = True
   Margin = True
   { menux Menu
@@ -40,7 +40,6 @@
     { sall Menu
       Text = ("Select All")
       Picture = Picture["icon:/32/select-all"]
-      Visible = False
       Shortcut = "Ctrl+A"
     }
     { y Menu
@@ -80,6 +79,11 @@
         Picture = Picture["icon:/32/close"]
         Shortcut = "Ctrl+Q"
       }
+      { bolder Menu
+        Text = ("Enable/Disable Bolder")
+        Picture = Picture["icon:/32/desktop"]
+        Shortcut = "Ctrl+Shift+Alt+B"
+      }
       { Full Menu
         Text = ("FullScreen")
         Picture = Picture["icon:/32/fullscreen"]
@@ -107,6 +111,7 @@
     { !TextEditor1 TextEditor
       MoveScaled(0,0,45,36)
       #Public = True
+      Font = Font["DejaVu Sans,+2"]
       Tracking = True
       Mouse = Mouse.Arrow
       Drop = True
@@ -171,7 +176,7 @@
     }
   }
   { Panel3 Panel
-    MoveScaled(98,7,15,20)
+    MoveScaled(98,7,15,15)
     Background = &HE0000000&
     { Button3 Button
       MoveScaled(0,0,5,5)
@@ -197,19 +202,8 @@
       MoveScaled(0,10,10,5)
       Value = True
     }
-    { Button10 Button
-      MoveScaled(10,10,5,5)
-      Picture = Picture["icon:/32/new"]
-    }
-    { Button11 Button
-      MoveScaled(0,15,5,5)
-      Picture = Picture["icon:/32/options"]
-    }
-    { ColorButton1 ColorButton
-      MoveScaled(5,15,5,5)
-    }
     { Button12 Button
-      MoveScaled(10,15,5,5)
+      MoveScaled(10,10,5,5)
       Picture = Picture["icon:/32/info"]
     }
     { Button9 Button
@@ -270,6 +264,20 @@
     Visible = True
     Picture = Picture["logo.png"]
     PopupMenu = "y"
+  }
+  { Panel5 Panel
+    MoveScaled(104,0,14,5)
+    { Button11 Button
+      MoveScaled(0.4286,0.4286,4.2857,4.2857)
+      Picture = Picture["icon:/32/options"]
+    }
+    { ColorButton1 ColorButton
+      MoveScaled(5,0.4286,4.2857,4.2857)
+    }
+    { Button10 Button
+      MoveScaled(9.4286,0.4286,4.2857,4.2857)
+      Picture = Picture["icon:/32/new"]
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 ' Gambas class file
 
 dosya As String
-compiler As String = "g++ -o"
+Highlightx As String
 
 Public Sub save_Click()
   Panel1.Visible = True
@@ -27,6 +27,7 @@ Public Sub Form_Resize()
   TextEditor1.y = 20
   TabStrip1.X = 32
   TabStrip1.Y = 16
+  Panel5.Y = 0
   TabStrip1.Width = FMain.Width
   If Panel1.Visible Or Panel2.Visible
   TabStrip1.Height = FMain.Height - Panel1.Height - 20
@@ -103,7 +104,8 @@ Public Sub Form_Resize()
   If FMain.Height < Panel4.Height + 80
   FMain.Height = Panel4.Height + 80
   Endif
-  
+  SwitchButton1_Click()
+  Panel5.X = FMain.Width - Panel5.Width
   
 End
 
@@ -137,7 +139,7 @@ Public Sub Form_Open()
   Form_Resize()
   TextEditor1.Highlight = "CPlusPlus"
   If Args.Max == 0
-  TextEditor1.Text = ""
+  Qopen_Click
   Else
   TextEditor1.Text = File.Load(Args.All[Args.Max])
   dosya = Args.All[Args.Max]
@@ -246,19 +248,10 @@ End
 
 Public Sub SwitchButton1_Click()
   If SwitchButton1.Value
-  If compiler == "g++ -o"
-  TextEditor1.Highlight = "C"
-  Endif
-  If compiler == "gcc -o"
-  TextEditor1.Highlight = "CPlusPlus"
-  Endif
-  TextEditor1.SelectAll
+  ComboBox1_Change()
   Else
-  TextEditor1.Highlight = ""
-  TextEditor1.SelectAll
+  TextEditor1.Highlight = "" 
   Endif
- 
-  Form_Resize()
 End
 
 
@@ -300,8 +293,8 @@ End
 
 Public Sub move3_Click()
 
-  TrayIcon1.Hide()
-  FMain.Close()
+  TrayIcon1.Delete()
+  FMain.Delete()
 End
 
 Public Sub TextLabel1_MouseMove()
@@ -325,14 +318,11 @@ Public Sub ComboBox1_Change()
   Endif
   
   If ComboBox1.Text = "C++"
-  compiler = "g++ -o"
   TextEditor1.Highlight = "CPlusPlus"
   Endif
   If ComboBox1.Text = "C"
-  compiler = "gcc -o"
   TextEditor1.Highlight = "C"
   Endif
-  TextArea1.Text = compiler & " build" & " " & dosya
   If ComboBox1.Text = "Gambas"
   TextArea1.Text = ""
   TextEditor1.Highlight = "Gambas"
@@ -343,7 +333,6 @@ Public Sub ComboBox1_Change()
   Endif
   
   If ComboBox1.Text = "HTML"
-  TextArea1.Text = "firefox " & dosya
   TextEditor1.Highlight = "HTML"
   Endif 
 End
@@ -429,7 +418,8 @@ Public Sub sall_Click()
   TextEditor1.SelectAll()
   
 End
+Public Sub bolder_Click()
+  
+  FMain.Border = Not FMain.Border
 
-
-
-
+End
