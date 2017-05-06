@@ -1,7 +1,8 @@
 ' Gambas class file
 
-dosya As String
 
+veri As New String[1000]
+dosya As New String[1000]
 Public Sub save_Click()
   Panel1.Visible = True
   Panel2.Visible = False
@@ -64,9 +65,11 @@ Public Sub Form_Resize()
   
   Panel1.Height = TextBox1.Height
   Panel2.Height = TextBox2.Height
-  
-  FMain.Text = "CIDE - " & dosya
-  PictureBox1.Width = FMain.Width
+  If dosya[SpinBox1.Value] == ""
+  FMain.Text = "CIDE - RAM File"
+  Else
+  FMain.Text = "CIDE - " & dosya[SpinBox1.Value] 
+  Endif
   TextLabel1.Text = FMain.Text
   TextLabel1.X = 0
   TextLabel1.Width = FMain.Width
@@ -121,8 +124,10 @@ End
 Public Sub Button2_Click()
   
   Shell("touch " & DirBox2.Value & "/" & TextBox2.Text)
-  Try TextEditor1.Text = File.Load(DirBox2.Value & "/" & TextBox2.Text)
-  dosya = DirBox2.Value & "/" & TextBox2.Text
+  Try veri[SpinBox1.Value] = File.Load(DirBox2.Value & "/" & TextBox2.Text)
+  TextEditor1.Text = veri[SpinBox1.Value]
+  TextEditor1.Text = veri[SpinBox1.Value]
+  dosya[SpinBox1.Value] = DirBox2.Value & "/" & TextBox2.Text
   Panel1.Visible = False
   Panel2.Visible = False
   Form_Resize()
@@ -138,10 +143,11 @@ Public Sub Form_Open()
   Form_Resize()
   TextEditor1.Highlight = "CPlusPlus"
   If Args.Max == 0
-  Qopen_Click
+  
   Else
-  TextEditor1.Text = File.Load(Args.All[Args.Max])
-  dosya = Args.All[Args.Max]
+  veri[SpinBox1.Value] = File.Load(Args.All[Args.Max])
+  TextEditor1.Text = veri[SpinBox1.Value]
+  dosya[SpinBox1.Value] = Args.All[Args.Max]
   Endif
   FMain.Icon = Picture.Load("logo.png")
   TextEditor1.PopupMenu = "menux"
@@ -190,19 +196,23 @@ Public Sub Button4_MouseMove()
 End
 
 Public Sub Button3_DblClick()
-  If dosya == ""
+  If dosya[SpinBox1.Value] == ""
   Message.Info("No Loaded file", "Ok")
   Else
-  TextBox3.Text = "xterm -e \"" & TextArea1.Text & "\""
-  Shell TextBox3.Text
+  Shell TextArea1.Text & " 2> stderr.log | cat > stdout.log"
   Endif
 End
 
 Public Sub qsave_Click()
-  If dosya == ""
-  Message.Info("No Loaded file", "Ok")
+  If dosya[SpinBox1.Value] == ""
+  Dialog.SaveFile
+  If Dialog.Path == ""
   Else
-  File.Save(dosya, TextEditor1.Text)  
+  File.Save(Dialog.Path, TextEditor1.Text)  
+  dosya[SpinBox1.Value] = Dialog.Path
+  Endif
+  Else
+  File.Save(dosya[SpinBox1.Value], TextEditor1.Text)  
   Endif
   Form_Resize()
 End
@@ -213,8 +223,9 @@ Public Sub Button5_Click()
   Dialog.OpenFile()
   If Dialog.Path == ""
   Else
-  dosya = Dialog.Path
-  TextEditor1.Text = File.Load(dosya)
+  dosya[SpinBox1.Value] = Dialog.Path
+  veri[SpinBox1.Value] = File.Load(dosya[SpinBox1.Value])
+  TextEditor1.Text = veri[SpinBox1.Value]
   Endif
   Form_Resize()
 End
@@ -240,8 +251,9 @@ End
 
 Public Sub Button8_Click()
 
-  TextEditor1.Text = ""
-  dosya = 0
+  veri[SpinBox1.Value] = ""
+  TextEditor1.Text = veri[SpinBox1.Value]
+  dosya[SpinBox1.Value] = 0
   Form_Resize()
 End
 
@@ -251,6 +263,7 @@ Public Sub SwitchButton1_Click()
   Else
   TextEditor1.Highlight = "" 
   Endif
+  TextEditor1.SelectAll
 End
 
 
@@ -261,8 +274,9 @@ Public Sub Button10_Click()
   Message.Error("File not saved", "Ok")
   Else
   Shell "touch" & Dialog.Path
-  dosya = Dialog.Path
-  TextEditor1.Text = ""
+  dosya[SpinBox1.Value] = Dialog.Path
+  veri[SpinBox1.Value] = ""
+  TextEditor1.Text = veri[SpinBox1.Value]
   Endif
   Form_Resize()
 End
@@ -420,5 +434,29 @@ End
 Public Sub bolder_Click()
   
   FMain.Border = Not FMain.Border
+
+End
+
+
+Public Sub Button13_Click()
+
+veri[SpinBox1.Value] = TextEditor1.Text
+End
+
+Public Sub SpinBox1_Change()
+  Form_Resize()
+  TextEditor1.Text = veri[SpinBox1.Value] 
+
+End
+
+
+
+Public Sub Button4_DblClick()
+
+  If Panel3.Visible
+  Panel3.Visible = False
+  Else
+  Panel3.Visible = True
+  Endif
 
 End
