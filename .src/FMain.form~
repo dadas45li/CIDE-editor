@@ -291,7 +291,7 @@
     }
     { SpinBox1 SpinBox
       MoveScaled(0.2857,0.2857,7,4.2857)
-      MaxValue = 1000
+      MaxValue = 999
     }
   }
   { Button4 Button

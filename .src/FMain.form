@@ -107,7 +107,6 @@
   }
   { TabStrip1 Frame
     MoveScaled(1,6,24,24)
-    Background = Color.Yellow
     { !TextEditor1 TextEditor
       MoveScaled(0,0,45,36)
       #Public = True
